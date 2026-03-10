@@ -416,7 +416,7 @@ Responda SOMENTE JSON válido, sem markdown:
   const tools=[{type:'web_search_20250305',name:'web_search'}];
   let messages=[{role:'user',content:`Julgue este site: ${url}`}];
   for(let turn=0;turn<6;turn++){
-    const res=await fetch('https://tribunal-do-site.aaammello.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,system:sys,tools,messages})});
+    const res=await fetch('https://tribunal-proxy.aaammello.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,system:sys,tools,messages})});
     if(!res.ok){const t=await res.text();throw new Error(`API ${res.status}: ${t}`);}
     const data=await res.json();
     const texts=data.content.filter(b=>b.type==='text');
